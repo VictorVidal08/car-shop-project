@@ -31,21 +31,21 @@ class CarService implements IService<ICar> {
     return car;
   }
 
-  //   public async update(_id: string, obj: unknown): Promise<IFrame> {
-  //     const parsed = FrameZodSchema.safeParse(obj);
+  public async update(_id: string, obj: unknown): Promise<ICar> {
+    const parsed = CarZodSchema.safeParse(obj);
 
-  //     if (!parsed.success) {
-  //       throw parsed.error;
-  //     }
+    if (!parsed.success) {
+      throw parsed.error;
+    }
 
-  //     const updated = await this._frame.update(_id, parsed.data);
+    const updated = await this._car.update(_id, parsed.data);
 
-  //     if (!updated) {
-  //       throw new Error(ErrorTypes.EntityNotFound);
-  //     }
+    if (!updated) {
+      throw new Error(ErrorTypes.ObjectNotFound);
+    }
 
-//     return updated;
-//   }
+    return updated;
+  }
 }
 
 export default CarService;
