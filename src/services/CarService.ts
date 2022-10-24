@@ -46,6 +46,13 @@ class CarService implements IService<ICar> {
 
     return updated;
   }
+
+  public async delete(_id:string):Promise<ICar> {
+    if (_id.length < 24) throw new Error(ErrorTypes.InvalidMongoId);
+    const car = await this._car.delete(_id);
+    if (!car) throw new Error(ErrorTypes.ObjectNotFound);
+    return car;
+  }
 }
 
 export default CarService;
