@@ -4,19 +4,24 @@ import { IModel } from '../interfaces/IModel';
 import { ErrorTypes } from '../errors/catalog';
 
 class CarService implements IService<ICar> {
-  private _frame:IModel<ICar>;
+  private _car:IModel<ICar>;
 
   constructor(model:IModel<ICar>) {
-    this._frame = model;
+    this._car = model;
   }
 
   public async create(obj:unknown):Promise<ICar> {
     const parsed = CarZodSchema.safeParse(obj);
-    console.log(parsed);
     if (!parsed.success) {
       throw new Error(ErrorTypes.EntityNotFound);
     }
-    return this._frame.create(parsed.data);
+    return this._car.create(parsed.data);
+  }
+
+  public async read():Promise<ICar[]> {
+    const allCars = await this._car.read();
+    if (!allCars) throw new Error(ErrorTypes.EntityNotFound);
+    return allCars;
   }
 
   //   public async readOne(_id:string):Promise<IFrame> {
