@@ -24,11 +24,12 @@ class CarService implements IService<ICar> {
     return allCars;
   }
 
-  //   public async readOne(_id:string):Promise<IFrame> {
-  //     const frame = await this._frame.readOne(_id);
-  //     if (!frame) throw new Error(ErrorTypes.EntityNotFound);
-  //     return frame;
-  //   }
+  public async readOne(_id:string):Promise<ICar> {
+    if (_id.length < 24) throw new Error(ErrorTypes.InvalidMongoId);
+    const car = await this._car.readOne(_id);
+    if (!car) throw new Error(ErrorTypes.ObjectNotFound);
+    return car;
+  }
 
   //   public async update(_id: string, obj: unknown): Promise<IFrame> {
   //     const parsed = FrameZodSchema.safeParse(obj);
