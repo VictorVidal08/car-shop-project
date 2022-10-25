@@ -4,7 +4,7 @@ import CarModel from '../../../models/Cars';
 import { Model } from 'mongoose';
 import { carMock, carMockWithId } from '../../mocks/carMock';
 
-describe('Frame Model', () => {
+describe('Car Model', () => {
   const carModel = new CarModel();
 
 	before(() => {
@@ -26,7 +26,7 @@ describe('Frame Model', () => {
 		});
 	});
 
-	describe('searching a frame', () => {
+	describe('searching a car by its ID', () => {
 		it('successfully found', async () => {
 			const carsFound = await carModel.readOne('62cf1fc6498565d94eba52cd');
 			expect(carsFound).to.be.deep.equal(carMockWithId);
