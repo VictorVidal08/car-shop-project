@@ -15,7 +15,7 @@ const motorcyclesMongooseSchema = new Schema<IMotorcycle>({
 });
 
 class Motorcycles extends MongoModel<IMotorcycle> {
-  constructor(model = mongooseCreateModel('Cars', motorcyclesMongooseSchema)) {
+  constructor(model = mongooseCreateModel('Motorcycles', motorcyclesMongooseSchema)) {
     super(model);
   }
 }
