@@ -10,9 +10,6 @@ describe('Car Model', () => {
 	before(() => {
 		sinon.stub(Model, 'create').resolves(carMockWithId);
 		sinon.stub(Model, 'findOne').resolves(carMockWithId);
-    // sinon.stub(Model, 'read').resolves(carMock);
-    // sinon.stub(Model, 'update').resolves(carMockWithId);
-    // sinon.stub(Model, 'delete').resolves(carMockWithId);
   });
 
 	after(() => {
