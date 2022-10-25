@@ -13,9 +13,8 @@ describe('Car Service', () => {
 	before(() => {
 		sinon.stub(carModel, 'create').resolves(carMockWithId);
 		sinon.stub(carModel, 'readOne')
-      // na chamada de index 0 `carModel.readOne` vai responder um fakeCar
+      // na chamada de index 0 `carModel.readOne` vai responder um fakeCar, a outra chamada (index 1) espera um retorno diferente.
 			.onCall(0).resolves(carMockWithId) 
-      // já na próxima chamada ele vai mudar seu retorno, isso pode ser feito várias vezes
 			.onCall(1).resolves(null); 
 	})
 	after(() => {
@@ -32,11 +31,10 @@ describe('Car Service', () => {
 			let error;
 			try {
 				await carService.create({});
-			} catch (err) {
+			} catch (err:any) {
 				error = err
 			}
-            console.log(error);
-			expect(error).to.be.deep.equal(ErrorTypes.EntityNotFound);
+			expect(error.message).to.be.equal(ErrorTypes.EntityNotFound);
 		});
 	});
 
@@ -50,7 +48,6 @@ describe('Car Service', () => {
 		it('Failure', async () => {
             let error;
 			try {
-        // a mesma chamada que o teste acima aqui vai gerar o erro por causa do nosso sinon.stub(...).onCall(1)
 				await carService.readOne(carMockWithId._id);
 			} catch (err:any) {
 				error = err
