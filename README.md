@@ -226,7 +226,7 @@ The endpoints referring to motorcycles are similar to those for cars, only modif
 
 </details>
 
-<h1>🚙  Bem vindo ao Projeto Car Shop!Welcome to Project Car Shop! 🛵</h1>
+<h1>🚙  Bem vindo ao Projeto Car Shop! 🛵</h1>
 
 # Resumo do projeto:
 
